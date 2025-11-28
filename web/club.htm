@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>社团活动 - 校园探索者</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: #f5f6fa;
+            color: #2d3436;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .nav {
+            background: #2d3436;
+            padding: 15px;
+            text-align: center;
+        }
+
+            .nav a {
+                color: white;
+                text-decoration: none;
+                margin: 0 15px;
+                padding: 8px 16px;
+                border-radius: 5px;
+                transition: background 0.3s;
+            }
+
+                .nav a:hover {
+                    background: #00b894;
+                }
+
+        .content {
+            padding: 30px;
+        }
+
+        .club-card {
+            background: #dfe6e9;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #00b894;
+        }
+
+        .activity-timeline {
+            background: #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .timeline-item {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+            .timeline-item:before {
+                content: "•";
+                color: #00b894;
+                font-size: 20px;
+                position: absolute;
+                left: 0;
+            }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .activity-item {
+            background: #b2bec3;
+            height: 120px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #636e72;
+            flex-direction: column;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .skills {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .skill-tag {
+            background: #00b894;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>🎯 社团活动</h1>
+            <p>兴趣发展 · 团队协作 · 个人成长</p>
+        </div>
+
+        <div class="nav">
+            <a href="../index.htm">返回主页</a>
+            <a href="study.htm">课程学习</a>
+            <a href="works.htm">作品展示</a>
+            <a href="campus.htm">校园足迹</a>
+        </div>
+
+        <div class="content">
+            <!-- 华小科社团 -->
+            <div class="club-card">
+                <h2>💬 华小科社团 - QQ部运营成员</h2>
+                <div class="skills">
+                    <span class="skill-tag">新媒体运营</span>
+                    <span class="skill-tag">内容创作</span>
+                    <span class="skill-tag">社群管理</span>
+                    <span class="skill-tag">活动策划</span>
+                </div>
+                <p><strong>部门职责：</strong>负责华小科官方QQ账号的日常运营管理，包括内容发布、互动回复、活动宣传和社群维护等工作。</p>
+
+                <div class="activity-timeline">
+                    <h3>📱 运营工作内容</h3>
+                    <div class="timeline-item">日常内容发布 - 校园资讯、学习资源、活动通知</div>
+                    <div class="timeline-item">互动回复 - 解答同学们关于社团活动的咨询</div>
+                    <div class="timeline-item">活动宣传 - 策划并发布各类社团活动的宣传文案</div>
+                    <div class="timeline-item">社群维护 - 管理QQ群聊，促进成员交流互动</div>
+                    <div class="timeline-item">数据分析 - 跟踪发布内容的效果和用户反馈</div>
+                </div>
+
+                <p><strong>个人收获：</strong>通过QQ运营工作，提升了内容创作能力和沟通技巧，学会了如何有效管理社交媒体账号。同时也加深了对校园社团文化的理解，结识了许多志同道合的朋友。</p>
+
+            </div>
+
+            <!-- 乒乓球社 -->
+            <div class="club-card">
+                <h2>🏓 乒乓球社 - 普通队员</h2>
+                <div class="skills">
+                    <span class="skill-tag">体育运动</span>
+                    <span class="skill-tag">反应训练</span>
+                    <span class="skill-tag">团队协作</span>
+                    <span class="skill-tag">竞技精神</span>
+                </div
+                <p><strong>社团活动：</strong>每周二上课，平日与同学切磋，向学长请教，提高乒乓球技术水平。</p>
+
+                <div class="activity-timeline">
+                    <h3>🏆 参与活动记录</h3>
+                    <div class="timeline-item">每周二下午 - 乒乓球基础技术训练课程</div>
+                    <div class="timeline-item">平日课余 - 与同学自由切磋，提升实战能力</div>
+                    <div class="timeline-item">向学长请教 - 学习高级技术和比赛经验</div>
+                    <div class="timeline-item">参加社团内部比赛 - 锻炼心理素质</div>
+                    <div class="timeline-item">观摩专业比赛 - 学习战术和技巧</div>
+                </div>
+
+                <p><strong>个人收获：</strong>乒乓球训练不仅锻炼了身体素质和反应能力，还培养了坚持不懈的体育精神。在比赛中学会了面对胜负的心态调整，通过团队活动增强了集体荣誉感。</p>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+```
