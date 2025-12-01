@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let particles = [];
         
         // Mouse interaction
-        let mouse = { x: null, y: null, radius: 150 };
+        let mouse = { x: null, y: null, radius: 200 };
 
         window.addEventListener('mousemove', (event) => {
             mouse.x = event.x;
@@ -175,15 +175,36 @@ document.addEventListener('DOMContentLoaded', () => {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
+                this.vx = (Math.random() - 0.5) * 1.5; // Faster movement
+                this.vy = (Math.random() - 0.5) * 1.5;
                 this.size = Math.random() * 2 + 1;
-                this.alpha = Math.random() * 0.5 + 0.2;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
             }
 
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
+
+                // Mouse interaction (Repulsion/Attraction)
+                if (mouse.x) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        // Attraction
+                        this.x += directionX * 0.5; 
+                        this.y += directionY * 0.5;
+                    }
+                }
 
                 if (this.x < 0) this.x = canvas.width;
                 if (this.x > canvas.width) this.x = 0;
@@ -193,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             draw() {
                 // Use theme blue color for particles on light background
-                ctx.fillStyle = `rgba(30, 60, 114, ${this.alpha * 0.5})`; 
+                ctx.fillStyle = '#1e3c72'; 
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -203,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Init Particles
         function createParticles() {
             particles = [];
-            const particleCount = Math.floor(canvas.width * canvas.height / 15000); // Adjust density
-            for (let i = 0; i < Math.min(particleCount, 150); i++) {
+            const particleCount = Math.floor(canvas.width * canvas.height / 12000); // More particles
+            for (let i = 0; i < Math.min(particleCount, 200); i++) {
                 particles.push(new Particle());
             }
         }
@@ -228,8 +249,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dy = p1.y - p2.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (dist < 120) {
-                        ctx.strokeStyle = `rgba(30, 60, 114, ${0.1 * (1 - dist/120)})`;
+                    // Shorter connections (80px)
+                    if (dist < 80) {
+                        ctx.strokeStyle = `rgba(30, 60, 114, ${0.2 * (1 - dist/80)})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
@@ -244,8 +266,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dy = p1.y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < mouse.radius) {
-                        ctx.strokeStyle = `rgba(30, 60, 114, ${0.2 * (1 - dist/mouse.radius)})`;
-                        ctx.lineWidth = 0.8;
+                        // Stronger connection to mouse
+                        ctx.strokeStyle = `rgba(30, 60, 114, ${0.4 * (1 - dist/mouse.radius)})`;
+                        ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
                         ctx.lineTo(mouse.x, mouse.y);
