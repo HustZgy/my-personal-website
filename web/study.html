@@ -3,162 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <title>课程学习 - 校园探索者</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Microsoft YaHei", sans-serif;
-            background: #f5f6fa;
-            color: #2d3436;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .page-header {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .nav {
-            background: #2d3436;
-            padding: 15px;
-            text-align: center;
-        }
-
-            .nav a {
-                color: white;
-                text-decoration: none;
-                margin: 0 15px;
-                padding: 8px 16px;
-                border-radius: 5px;
-                transition: background 0.3s;
-            }
-
-                .nav a:hover {
-                    background: #00b894;
-                }
-
-        .content {
-            padding: 30px;
-        }
-
-        .course-card {
-            background: #dfe6e9;
-            margin: 20px 0;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid #6c5ce7;
-        }
-
-        .resources {
-            background: #ffeaa7;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .code-snippet {
-            background: #2d3436;
-            color: #dfe6e9;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            margin: 10px 0;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Prism.js for Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <!-- KaTeX for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="../js/main.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <div class="page-header">
-            <h1>📚 课程学习</h1>
-            <p>知识积累 · 学海无涯</p>
+        <header>
+            <div class="campus-badge">
+                <img src="../image/logo.png" alt="学校校徽" width="120" height="120">
+            </div>
+            <h1>校园探索者</h1>
+            <p>我的大学成长日记 · 记录每一份精彩</p>
+        </header>
+
+        <div class="nav-container">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="study.html" class="active">课程学习</a></li>
+                    <li><a href="club.html">社团活动</a></li>
+                    <li><a href="campus.html">校园足迹</a></li>
+                    <li><a href="forme.html">🎨关于作者</a></li>
+                </ul>
+            </nav>
         </div>
 
-        <div class="nav">
-            <a href="../index.html">返回主页</a>
-            <a href="club.html">社团活动</a>
-            <a href="campus.html">校园足迹</a>
-             <a href="forme.html">关于我</a>
-        </div>
-
-        <div class="content">
+        <div class="main-content">
+            <h2 class="page-title">📚 课程学习</h2>
+            
             <!-- C语言程序设计 -->
-            <div class="course-card">
-                <h2>💻 C语言程序设计</h2>
+            <div class="content-card">
+                <h3>💻 C语言程序设计</h3>
                 <p><strong>学习内容：</strong>基础语法、数据类型、流程控制、函数、数组、指针、结构体、文件操作</p>
                 <p><strong>学习心得：</strong>通过C语言学习，掌握了编程的基本思维方法。从简单的输入输出到复杂的数据处理，逐步建立起编程能力。最近学习了排序算法，理解了各种排序的工作原理和实现方式。</p>
 
-                <div class="code-snippet">
-                    // 选择排序算法实现<br>
-                    void selectionSort(int arr[], int n) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;int i, j, minIndex, temp;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;for (i = 0; i < n-1; i++) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minIndex = i;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (j = i+1; j < n; j++) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (arr[j] < arr[minIndex]) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minIndex = j;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp = arr[i];<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[i] = arr[minIndex];<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[minIndex] = temp;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                    }<br><br>
-                    // 测试代码<br>
-                    int main() {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;int numbers[] = {64, 25, 12, 22, 11};<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;int n = sizeof(numbers)/sizeof(numbers[0]);<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;selectionSort(numbers, n);<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
-                    }
-                </div>
+                <pre><code class="language-c">
+// 选择排序算法实现
+void selectionSort(int arr[], int n) {
+    int i, j, minIndex, temp;
+    for (i = 0; i < n-1; i++) {
+        minIndex = i;
+        for (j = i+1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}
+
+// 测试代码
+int main() {
+    int numbers[] = {64, 25, 12, 22, 11};
+    int n = sizeof(numbers)/sizeof(numbers[0]);
+    selectionSort(numbers, n);
+    return 0;
+}
+                </code></pre>
             </div>
+
             <!-- 微积分 -->
-            <div class="course-card">
-                <h2>📐 微积分</h2>
+            <div class="content-card">
+                <h3>📐 微积分</h3>
                 <p><strong>学习内容：</strong>函数与极限、导数与微分、中值定理、积分学、多元函数微分</p>
                 <p><strong>学习心得：</strong>微积分是理工科的重要基础课程，通过学习理解了变化率和累积量的数学表达。导数在优化问题中的应用让我看到了数学在实际问题中的价值，积分则帮助理解面积、体积等几何概念。</p>
 
                 <div class="code-snippet">
-                    <strong>重要公式笔记：</strong><br>
-                    导数公式：f'(x) = lim(Δx→0) [f(x+Δx)-f(x)]/Δx<br>
-                    基本积分：∫xⁿ dx = xⁿ⁺¹/(n+1) + C (n≠-1)<br>
-                    换元积分法：通过变量替换简化积分计算
+                    <strong>重要公式笔记：</strong>
+                    <p>导数公式：$$ f'(x) = \lim_{\Delta x \to 0} \frac{f(x+\Delta x)-f(x)}{\Delta x} $$</p>
+                    <p>基本积分：$$ \int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1) $$</p>
+                    <p>换元积分法：通过变量替换简化积分计算</p>
                 </div>
             </div>
 
             <!-- 线性代数 -->
-            <div class="course-card">
-                <h2>📊 线性代数</h2>
+            <div class="content-card">
+                <h3>📊 线性代数</h3>
                 <p><strong>学习内容：</strong>矩阵运算、行列式、向量空间、线性方程组、特征值与特征向量</p>
                 <p><strong>学习心得：</strong>线性代数为计算机图形学、机器学习等领域奠定基础。矩阵运算在数据处理中广泛应用，向量空间的概念帮助理解高维数据的处理方式。通过高斯消元法求解线性方程组，体会到了数学方法的系统性。</p>
 
                 <div class="code-snippet">
-                    <strong>矩阵运算示例：</strong><br>
-                    矩阵乘法：C = A × B<br>
-                    其中 cᵢⱼ = Σ(aᵢₖ × bₖⱼ)<br>
-                    特征方程：|A - λI| = 0<br>
-                    用于求解特征值λ
+                    <strong>矩阵运算示例：</strong>
+                    <p>矩阵乘法：$$ C = A \times B $$</p>
+                    <p>其中 $$ c_{ij} = \sum_{k} (a_{ik} \times b_{kj}) $$</p>
+                    <p>特征方程：$$ |A - \lambda I| = 0 $$</p>
+                    <p>用于求解特征值 $\lambda$</p>
                 </div>
             </div>
         </div>
+        <footer>
+            <p>© 2025 校园探索者 · 记录成长的点滴</p>
+            <p>联系方式:<a href="mailto:2331952260@qq.com">2331952260@qq.com</a></p>
+        </footer>
     </div>
+    <!-- Prism.js Core and C Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
 </body>
+</html>
 </html>
 ```
