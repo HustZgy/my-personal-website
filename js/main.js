@@ -141,20 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
 
     function initParticles() {
-        const header = document.querySelector('header');
-        if (!header) return;
-
         const canvas = document.createElement('canvas');
-        canvas.id = 'particles-canvas';
-        header.appendChild(canvas);
+        canvas.id = 'global-particles';
+        document.body.appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
         let particles = [];
         
         // Resize Canvas
         function resize() {
-            canvas.width = header.offsetWidth;
-            canvas.height = header.offsetHeight;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
         window.addEventListener('resize', resize);
         // Initial resize
@@ -182,7 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             draw() {
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                // Use theme blue color for particles on light background
+                ctx.fillStyle = `rgba(30, 60, 114, ${this.alpha * 0.5})`; 
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -192,8 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Init Particles
         function createParticles() {
             particles = [];
-            const particleCount = Math.floor(canvas.width * canvas.height / 10000); // Density based on area
-            for (let i = 0; i < Math.min(particleCount, 100); i++) {
+            const particleCount = Math.floor(canvas.width * canvas.height / 15000); // Adjust density
+            for (let i = 0; i < Math.min(particleCount, 150); i++) {
                 particles.push(new Particle());
             }
         }
@@ -216,8 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dy = p1.y - p2.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (dist < 100) {
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - dist/100)})`;
+                    if (dist < 120) {
+                        // Use theme blue color for lines
+                        ctx.strokeStyle = `rgba(30, 60, 114, ${0.1 * (1 - dist/120)})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
