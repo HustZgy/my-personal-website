@@ -303,21 +303,31 @@ code[class*="language-"], pre[class*="language-"] {
     font-size: 14px;
     text-shadow: none !important;
 }
+
+/* Footer */
+footer {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
     color: #666;
     text-align: center;
-    padding: 40px 20px;
+    padding: 25px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
     font-size: 0.9em;
     position: relative;
-    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@keyframes floatText {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0px); }
 }
 
 footer p {
-    margin: 8px 0;
+    margin: 5px 0;
     transition: all 0.3s ease;
-    animation: float 6s ease-in-out infinite;
+    animation: floatText 4s ease-in-out infinite;
 }
 
 footer p:nth-child(2) {
