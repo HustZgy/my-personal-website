@@ -245,8 +245,21 @@ nav ul li a:hover::after, nav ul li a.active::after {
 }
 
 /* Cards */
+@keyframes cardShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.welcome-card, .quick-links, .content-card {
+    background: linear-gradient(120deg, #ffffff 0%, #f4f7f9 50%, #ffffff 100%);
+    background-size: 200% 200%;
+    animation: cardShimmer 6s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
 .welcome-card {
-    background: #fff;
     padding: 10px;
 }
 
@@ -267,7 +280,6 @@ nav ul li a:hover::after, nav ul li a.active::after {
 }
 
 .quick-links {
-    background: #f8f9fa;
     padding: 30px;
     border-radius: 12px;
     border: 1px solid #eee;
@@ -333,14 +345,13 @@ footer p {
 }
 
 .content-card {
-    background: white;
+.content-card {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     margin-bottom: 30px;
     transition: transform 0.3s ease;
 }
-
 .content-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
