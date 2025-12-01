@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Theme Toggle
     initThemeToggle();
 
+    // Initialize QQ Link
+    initQQLink();
+
     // Handle Navigation Clicks
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
@@ -15,8 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const href = link.getAttribute('href');
         
-        // Ignore external links, anchors, or empty links
-        if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) return;
+        // Ignore external links, anchors, empty links, or special protocols
+        if (!href || 
+            href.startsWith('#') || 
+            href.startsWith('http') || 
+            href.startsWith('mailto:') || 
+            href.startsWith('tencent:') || 
+            href.startsWith('mqqapi:')) return;
         
         e.preventDefault();
         
@@ -93,6 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Re-initialize Theme Toggle
             initThemeToggle();
+
+            // Re-initialize QQ Link
+            initQQLink();
 
             // Trigger Prism Syntax Highlighting
             if (window.Prism) {
@@ -372,21 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const button = document.createElement('button');
         button.className = 'theme-toggle';
         button.setAttribute('aria-label', 'Toggle theme');
-        button.style.cssText = `
-            background: transparent;
-            border: none;
-            font-size: 1.2em;
-            cursor: pointer;
-            margin-left: 10px;
-            padding: 8px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 102;
-        `;
+        // Styles are handled in CSS
         
         // Function to set theme
         const setTheme = (theme) => {
@@ -430,5 +427,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // If we append to nav, it will be after the UL (which is hidden on mobile) and before/after hamburger?
         // Nav structure: [Hamburger] [UL] [ThemeToggle]
         nav.appendChild(button);
+    }
+
+    function initQQLink() {
+        const qqLink = document.querySelector('.qq-link');
+        if (!qqLink) return;
+
+        const uin = '2331952260';
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // Mobile Protocol: Show Profile Card (with Add Friend button)
+            qqLink.href = `mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${uin}&card_type=person&source=sharecard`;
+        } else {
+            // PC Protocol: Add Friend Dialog
+            qqLink.href = `tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=${uin}`;
+        }
     }
 });
