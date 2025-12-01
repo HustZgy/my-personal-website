@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
     const content = document.querySelector('.main-content');
     
+    // Initialize Mobile Menu
+    initMobileMenu();
+
     // Handle Navigation Clicks
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
@@ -81,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Re-highlight active link
             updateActiveLink();
+
+            // Re-initialize Mobile Menu
+            initMobileMenu();
 
             // Trigger Prism Syntax Highlighting
             if (window.Prism) {
@@ -322,5 +328,28 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animate);
         }
         animate();
+    }
+
+    function initMobileMenu() {
+        const nav = document.querySelector('nav');
+        if (!nav) return;
+
+        // Check if button already exists
+        if (nav.querySelector('.menu-toggle')) return;
+
+        const button = document.createElement('button');
+        button.className = 'menu-toggle';
+        button.innerHTML = '☰';
+        button.setAttribute('aria-label', 'Toggle navigation');
+        
+        button.addEventListener('click', () => {
+            const ul = nav.querySelector('ul');
+            if (ul) {
+                ul.classList.toggle('active');
+                button.innerHTML = ul.classList.contains('active') ? '✕' : '☰';
+            }
+        });
+
+        nav.insertBefore(button, nav.firstChild);
     }
 });
