@@ -692,60 +692,135 @@ footer p:hover {
         position: sticky;
         top: 0;
         padding: 0;
+        background: rgba(255, 255, 255, 0.85); /* Glass effect base */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
 
     nav {
         position: relative;
+        height: 60px; /* Fixed height for navbar */
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Add a logo/brand to the navbar for mobile */
+    nav::before {
+        content: '校园探索者';
+        position: absolute;
+        left: 20px;
+        font-weight: 700;
+        color: #1e3c72;
+        font-size: 1.1em;
+        opacity: 0.9;
     }
 
     .menu-toggle {
-        display: block;
-        background: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
         border: none;
-        font-size: 1.5em;
+        font-size: 1.4em;
         color: #2a5298;
         cursor: pointer;
-        padding: 15px 20px;
+        width: 60px;
+        height: 60px;
         position: absolute;
         right: 0;
         top: 0;
         z-index: 101;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-toggle:active {
+        transform: scale(0.9);
+        background: rgba(0,0,0,0.05);
     }
 
     nav ul {
         display: none; /* Hidden by default */
         flex-direction: column;
         width: 100%;
-        background: white;
-        border-top: 1px solid #eee;
-        padding: 0;
-        animation: slideDown 0.3s ease-out;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding: 10px 15px 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        position: absolute;
+        top: 60px; /* Below navbar */
+        left: 0;
     }
 
     nav ul.active {
         display: flex;
+        animation: menuSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+    @keyframes menuSlide {
+        from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     nav ul li {
-        margin: 0;
+        margin: 4px 0;
         width: 100%;
-        text-align: center;
-        border-bottom: 1px solid #f5f5f5;
+        border: none;
+        opacity: 0;
+        animation: itemFade 0.4s ease forwards;
+    }
+    
+    /* Stagger animation */
+    nav ul li:nth-child(1) { animation-delay: 0.05s; }
+    nav ul li:nth-child(2) { animation-delay: 0.1s; }
+    nav ul li:nth-child(3) { animation-delay: 0.15s; }
+    nav ul li:nth-child(4) { animation-delay: 0.2s; }
+    nav ul li:nth-child(5) { animation-delay: 0.25s; }
+
+    @keyframes itemFade {
+        from { opacity: 0; transform: translateX(-10px); }
+        to { opacity: 1; transform: translateX(0); }
     }
 
     nav ul li a {
-        padding: 15px;
-        display: block;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
         width: 100%;
+        border-radius: 10px;
+        color: #555;
+        font-weight: 500;
+        transition: all 0.2s;
+        font-size: 1em;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+        background: rgba(42, 82, 152, 0.08);
+        color: #2a5298;
+        padding-left: 25px;
+    }
+    
+    /* Active indicator dot */
+    nav ul li a::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: #2a5298;
+        border-radius: 50%;
+        margin-right: 12px;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+    
+    nav ul li a.active::before {
+        opacity: 1;
     }
 
     nav ul li a::after {
-        display: none; /* Remove underline effect on mobile */
+        display: none; /* Remove desktop underline */
     }
 
     /* Grids */
