@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadPage(url, animate = true) {
         try {
+            // Update Header State (Collapse/Expand)
+            updateHeaderState(url);
+
             // Start Transition
             if (animate) {
                 const currentContent = document.querySelector('.main-content');
@@ -86,6 +89,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function updateHeaderState(url) {
+        const urlObj = new URL(url, window.location.href);
+        const path = urlObj.pathname;
+        const header = document.querySelector('header');
+        
+        if (!header) return;
+
+        // Check if it's home page
+        const isHomePage = path.endsWith('index.html') || path.endsWith('/') || path.split('/').pop() === '';
+
+        if (isHomePage) {
+            header.classList.remove('collapsed');
+        } else {
+            header.classList.add('collapsed');
+        }
+    }
+
     function updateActiveLink() {
         const currentPath = window.location.pathname;
         const links = document.querySelectorAll('nav ul li a');
@@ -114,4 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initial active state
     updateActiveLink();
+    // Initial header state
+    updateHeaderState(window.location.href);
 });
