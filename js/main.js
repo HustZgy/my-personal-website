@@ -148,6 +148,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
         let particles = [];
         
+        // Mouse interaction
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+        
         // Resize Canvas
         function resize() {
             canvas.width = window.innerWidth;
@@ -209,13 +222,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Draw connections
             particles.forEach((p1, i) => {
+                // Connect to other particles
                 particles.slice(i + 1).forEach(p2 => {
                     const dx = p1.x - p2.x;
                     const dy = p1.y - p2.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     
                     if (dist < 120) {
-                        // Use theme blue color for lines
                         ctx.strokeStyle = `rgba(30, 60, 114, ${0.1 * (1 - dist/120)})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
@@ -224,6 +237,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         ctx.stroke();
                     }
                 });
+
+                // Connect to mouse
+                if (mouse.x != undefined) {
+                    const dx = p1.x - mouse.x;
+                    const dy = p1.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        ctx.strokeStyle = `rgba(30, 60, 114, ${0.2 * (1 - dist/mouse.radius)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
             });
 
             requestAnimationFrame(animate);
