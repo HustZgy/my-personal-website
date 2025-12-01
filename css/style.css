@@ -45,30 +45,59 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(-45deg, #43cea2, #185a9d, #43cea2, #185a9d);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
-    padding: 60px 30px;
+    padding: 80px 30px;
     text-align: center;
     position: relative;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     height: auto;
     opacity: 1;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(24, 90, 157, 0.2);
+    box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Wave Animation Effect */
+header::before, header::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    min-width: 250%;
+    min-height: 250%;
+    background-color: rgba(255, 255, 255, 0.05);
+    animation-name: rotate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    border-radius: 40%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 0;
+}
+
+header::before {
+    bottom: -220%;
+    animation-duration: 12s;
+}
+
+header::after {
+    bottom: -215%;
+    animation-duration: 15s;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes rotate {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(360deg); }
 }
 
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
+}
+
+header h1, header p, .campus-badge {
+    position: relative;
+    z-index: 1;
 }
 
 header h1 {
@@ -105,7 +134,7 @@ header.collapsed {
     align-items: center;
     justify-content: center;
     font-size: 40px;
-    color: #185a9d;
+    color: #1e3c72;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     border: 4px solid rgba(255, 255, 255, 0.3);
     transition: transform 0.3s ease;
@@ -155,7 +184,7 @@ nav ul li a {
 }
 
 nav ul li a:hover, nav ul li a.active {
-    color: #185a9d;
+    color: #2a5298;
     background: transparent;
 }
 
@@ -166,7 +195,7 @@ nav ul li a::after {
     left: 50%;
     width: 0;
     height: 3px;
-    background: #185a9d;
+    background: #2a5298;
     transition: all 0.3s;
     transform: translateX(-50%);
 }
@@ -231,7 +260,7 @@ nav ul li a:hover::after, nav ul li a.active::after {
 .quick-links h3 {
     color: #2c3e50;
     margin-bottom: 20px;
-    border-bottom: 2px solid #185a9d;
+    border-bottom: 2px solid #2a5298;
     padding-bottom: 10px;
     display: inline-block;
 }
@@ -253,7 +282,7 @@ nav ul li a:hover::after, nav ul li a.active::after {
 .quick-links li:hover {
     transform: translateX(5px) translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-left: 3px solid #185a9d;
+    border-left: 3px solid #2a5298;
 }
 
 .quick-links a {
@@ -282,7 +311,7 @@ footer p {
     font-size: 2em;
     color: #2c3e50;
     margin-bottom: 30px;
-    border-left: 5px solid #185a9d;
+    border-left: 5px solid #2a5298;
     padding-left: 20px;
     animation: slideInRight 0.5s ease;
 }
