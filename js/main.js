@@ -87,6 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.Prism.highlightAll();
             }
 
+            // Trigger KaTeX Math Rendering
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+
         } catch (error) {
             console.error('Error loading page:', error);
             // If SPA load fails, fallback to full reload
@@ -142,6 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial header state
     updateHeaderState(window.location.href);
     
+    // Initial Math Rendering
+    if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+            ]
+        });
+    }
+
     // Initialize Particles
     initParticles();
 
